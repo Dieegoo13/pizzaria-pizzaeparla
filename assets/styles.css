@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 *,
 ::before,
 ::after {
@@ -25,7 +27,7 @@
 /**********************************/
 
 :root {
-	/* --ff-primary: font-family: "Poppins", sans-serif; */
+   --ff-title: font-family: "Roboto", sans-serif;; 
 	
 	--clr-background: 	#B22222;
 	--clr-white: 		#fff;
@@ -166,43 +168,58 @@ ul {
 }
 
 /**********************************/
-/* 4. Sobre Nós
+/* 4. Footer
 /**********************************/
 
+footer {
+    text-align: center;
+}
 
+.menu-footer {
+    background-color: var(--clr-background);
+    padding: 10px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
 
-/**********************************/
-/* 5. Diferenciais
-/**********************************/
+.menu-footer a {
+    color: var(--clr-white);
+    font-size: 1rem;
+    font-weight: 600;
+}
 
+.menu-footer a:hover {
+    color: #FEAF05;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    text-decoration: underline; 
+  }
 
+ .title-list {
+    color: var(--clr-white);
+    font-family: "Roboto", sans-serif;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 0 #000000;
+    margin: 5px;
+ } 
 
-/**********************************/
-/* 6. Pacotes 
-/**********************************/
+ .copyright {
+    background-color: var(--clr-dark-red);
+    padding: 10px;
+    color: var(--clr-white);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
 
+.copyright a {
+    font-size: 1.8rem;
+    color: #FEAF05;
+}
 
-
-/**********************************/
-/* 7. Newsletter
-/**********************************/
-
-
-
-/**********************************/
-/* 8. Galeria
-/**********************************/
-
-
-
-/**********************************/
-/* 9. Footer
-/**********************************/
-
-
-
-/**********************************/
-/* 10. Modal
-/**********************************/
+.copyright a:hover {
+    color: #ff7300;
+    text-decoration: underline; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
 
 
