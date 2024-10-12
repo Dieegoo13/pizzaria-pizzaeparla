@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+/**********************************/
+/* 0. Variáveis
+/* 1. Estilos Gerais
+/* 2. Navbar
+/* 3. Conteudo principal
+/* 4. Sobre Nós
+/* 5. Diferenciais
+/* 6. Pacotes
+/* 7. Newsletter
+/* 8. Galeria
+/* 9. Footer
+/* 10. Modal
+/**********************************/
+
+/**********************************/
+/* 0. Variáveis
+/**********************************/
+
+:root {
+	/* --ff-primary: font-family: "Poppins", sans-serif; */
+	
+	--clr-background: 	#B22222;
+	--clr-white: 		#fff;
+	--clr-gray: 		#EEEDED;
+	--clr-yellow:       #FEAF05;
+	--clr-dark-red: 	#660000;
+	
+	--spacing: 0.25rem;
+	--transition: all 0.2s linear;
+	--dark-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/**********************************/
+/* 1. Estilos Gerais
+/**********************************/
+
+html {
+	font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+/**********************************/
+/* 2. Navbar
+/**********************************/
+
+.container-menu {
+    background-color: var(--clr-background);
+    box-shadow: var(--dark-shadow);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.container-menu a {
+    color: var(--clr-white);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.container-menu a:hover {
+    color: #FEAF05;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    text-decoration: underline; 
+  }
+
+.cart img{
+    color: var(--clr-white);
+}
+
+
+/**********************************/
+/* 3. Conteudo principal
+/**********************************/
+
+.container-principal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.child {
+    width: 600px;
+    height: 600px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #EEEDED;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.seção-imagem1 a img {
+    width: 24rem;
+    height: 24rem;
+    border-radius: 5px;
+}
+
+.seção-imagem2 a img {
+    width: 24rem;
+    height: 24rem;
+    border-radius: 5px;
+}
+
+.seção-imagem3 a img {
+    width: 50rem;
+    height: 18em;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 860px){
+    .container-principal{
+        width: 100%; 
+        height: 100%;
+    }
+
+    .child {
+        width: 75%;  
+        height: 64%;
+    }
+
+    .seção-imagem1 a img {
+      margin-top: 2rem;
+    }
+
+    .seção-imagem3 a img {
+        width: 25rem;
+        height: 10em;
+        border-radius: 5px;
+    }
+    
+}
+
+/**********************************/
+/* 4. Sobre Nós
+/**********************************/
+
+
+
+/**********************************/
+/* 5. Diferenciais
+/**********************************/
+
+
+
+/**********************************/
+/* 6. Pacotes 
+/**********************************/
+
+
+
+/**********************************/
+/* 7. Newsletter
+/**********************************/
+
+
+
+/**********************************/
+/* 8. Galeria
+/**********************************/
+
+
+
+/**********************************/
+/* 9. Footer
+/**********************************/
+
+
+
+/**********************************/
+/* 10. Modal
+/**********************************/
+
+
