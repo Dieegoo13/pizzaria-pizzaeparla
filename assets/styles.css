@@ -91,13 +91,41 @@ ul {
 
 .container-menu a:hover {
     color: #FEAF05;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
-    text-decoration: underline; 
-  }
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+}
 
-.cart img{
+.cart img {
     color: var(--clr-white);
 }
+
+span#burguer {
+    color: var(--clr-white);
+    display: block; 
+}
+
+span#burguer:hover {
+    color: var(--clr-yellow);
+    cursor: pointer;
+}
+
+
+#menu {
+    display: none; 
+}
+
+
+@media (min-width: 769px) {
+    #menu {
+        display: flex; 
+    }
+
+    span#burguer {
+        display: none; 
+    }
+}
+
+
 
 
 /**********************************/
