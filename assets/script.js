@@ -1,10 +1,10 @@
-const menubar = document.getElementById("menu");
-
-function clickMenu() {
-    // Se o menu estiver oculto, mostre-o, caso contrário, oculte-o
-    if (menubar.style.display === 'flex' || menubar.style.display === '') {
-        menubar.style.display = 'none'; // Oculta o menu se já estiver aberto
+function menuShow() {
+    let menuMobile = document.querySelector('.mobile-menu');
+    if (menuMobile.classList.contains('open')) {
+        menuMobile.classList.remove('open');
+        document.querySelector('.icon').src = "imagens/menu_white_36dp (1).svg";
     } else {
-        menubar.style.display = 'flex'; // Mostra o menu se estiver oculto
+        menuMobile.classList.add('open');
+        document.querySelector('.icon').src = "imagens/close_white_36dp (1).svg";
     }
 }

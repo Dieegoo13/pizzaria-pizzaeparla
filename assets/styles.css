@@ -48,12 +48,6 @@ html {
 	font-size: 62.5%;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-}
-
 a {
 	text-decoration: none;
 }
@@ -62,71 +56,104 @@ ul {
     list-style: none;
 }
 
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
 
+header {
+    background-color: var(--clr-background);
+    box-shadow: 1px 1px 6px #000;
+}
 
 /**********************************/
 /* 2. Navbar
 /**********************************/
 
-.container-menu {
-    background-color: var(--clr-background);
-    box-shadow: var(--dark-shadow);
+.nav-bar {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
+    padding: 1.5rem 6rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .nav-list {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-list ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
     gap: 30px;
 }
 
-.container-menu a {
-    color: var(--clr-white);
-    font-size: 1.4rem;
-    font-weight: bold;
-}
-
-.container-menu a:hover {
-    color: #FEAF05;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    text-decoration: underline;
-}
-
-.cart img {
-    color: var(--clr-white);
-}
-
-span#burguer {
-    color: var(--clr-white);
-    display: block; 
-}
-
-span#burguer:hover {
+.nav-list ul a:hover {
     color: var(--clr-yellow);
-    cursor: pointer;
 }
 
-
-#menu {
-    display: none; 
+.nav-link {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 400;
 }
 
+.mobile-menu, .mobile-menu-icon {
+    display: none;
+}
 
-@media (min-width: 769px) {
-    #menu {
-        display: flex; 
+@media screen and (max-width: 730px) {
+    .mobile-menu li a:hover{
+        color: var(--clr-yellow)
     }
 
-    span#burguer {
-        display: none; 
+    .nav-bar {
+        padding: 1.5rem 4rem;
+    }
+
+    .nav-item {
+        display: none;
+    }
+    .login-button {
+        display: none;
+    }
+    .mobile-menu-icon {
+        display: block;
+    }
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+    .mobile-menu .nav-item {
+        display: block;
+        padding-top: 1.2rem;
+    }
+    .mobile-menu .login-button {
+        display: block;
+        padding: 1rem 2rem;
+    }
+    .mobile-menu .login-button button {
+        width: 100%;
+    }
+    .open{
+        display: block;
     }
 }
-
-
-
 
 /**********************************/
 /* 3. Conteudo principal

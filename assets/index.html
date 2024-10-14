@@ -3,38 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza&Parla</title>
     <link rel="stylesheet" href="styles.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_naames=menu" />
+    <title>Pizza&Parla</title>
 </head>
 <body>
     <header>
-        <div class="container-menu">
-            <span id="burguer" class="material-symbols-outlined" onclick="clickMenu()">menu</span>
-    
-            <div class="logo">
-                <a href="index.html">
-                    <img src="imagens/PARLA.png" alt="">
-                </a>
+        <nav class="nav-bar">
+
+            <div class="mobile-menu-icon">
+                <button onclick="menuShow()"><img  class="icon" src="imagens/menu_white_36dp (1).svg" alt=""></button>
             </div>
-    
-            <nav id="menu">
-                <ul class="nav-list">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="cardapio.html">CARDÁPIO</a></li>
-                    <li><a href="#">INFORMAÇÕES</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
+
+            <div class="logo">
+                <a href="index.html"><img src="imagens/PARLA.png" alt=""></a>
+            </div>
+
+            <div class="nav-list">
+                <ul>
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Informações</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
                 </ul>
-            </nav>
-    
+            </div>
+
             <span class="cart">
                 <a href="#"><img src="imagens/shopping_cart_16dp_FFF_FILL0_wght400_GRAD0_opsz20.png" alt=""></a>
             </span>
+
+
+        </nav>
+
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Cardápio</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Informações</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+            </ul>
+
         </div>
+        
     </header>
-    
-    
+
 
     <main>
         <section class="container-principal">
@@ -90,7 +103,8 @@
         
     </footer>
 
+    <script src="script.js"></script>
+    
 </body>
 
-  <script src="script.js"></script>
 </html>
