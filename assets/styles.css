@@ -97,6 +97,8 @@ header {
 
 .nav-list ul a:hover {
     color: var(--clr-yellow);
+    text-decoration: underline;
+    
 }
 
 .nav-link {
@@ -112,7 +114,8 @@ header {
 
 @media screen and (max-width: 730px) {
     .mobile-menu li a:hover{
-        color: var(--clr-yellow)
+        color: var(--clr-yellow);
+        text-decoration: underline;
     }
 
     .nav-bar {
@@ -277,4 +280,14 @@ footer {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
+@media screen and (max-width: 860px) {
+  
+    .copyright {
+         font-size: 1.2rem;
+    }
+    .copyright a {
+        font-size: 1.4rem;
+        color: #FEAF05;
+    }
+}
 
