@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cardapiostyle.css">
+    <link rel="stylesheet" href="css/user.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_naames=menu" />
-    <title>Pizza&Parla</title>
+    <title>Usuário</title>
 </head>
 <body>
     <header>
@@ -24,7 +24,7 @@
                 <ul>
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="cardapio.html" class="nav-link">Cardápio</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Informações</a></li>
+                    <li class="nav-item"><a href="#footer" class="nav-link">Informações</a></li>
                     <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </div>
@@ -51,91 +51,75 @@
 
 
     <main>
-
-        <div class="flex-container-publi">
-            <section class="publicidade">
-                <p>Peça agora e experimente <br> a melhor pizza da cidade.</p>
-                <button>Peça já</button>
-            </section>
-            <div class="titulo-cardapio">
-                <p>Cardápio</p>
-            </div>
+            
+        <div class="titulo-pagina">
+            <h1>PERFIL</h1>
         </div>
 
-
+        
         <section class="container-principal">
-
             <div class="child">
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio1.jpg" alt="">
-                    <p>
-                        MÉDIA R$ 39,90 <br>
-                        Queijo, champignon, azeitona preta, <br> cebola, oregano e pimentão verde.
-                    </p>  
-
-                    <button>ADICIONAR</button>
-                </div>
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio2.jpg" alt="">
-                    <p>
-                        MÉDIA R$ 39,90 <br>
-                        Queijo, champignon, azeitona preta, <br> cebola, oregano e pimentão verde.
-                    </p>  
-                    
-                    <button>ADICIONAR</button>
-                </div>
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio3.jpg" alt="">
-                    <p>
-                        MÉDIA R$ 39,90 <br>
-                        Queijo, champignon, azeitona preta, <br>cebola, oregano e pimentão verde.
-                    </p>  
-                    
-                    <button>ADICIONAR</button>
-                </div>
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio4.jpg" alt="">
-                    <p>
-                        GRANDE R$ 59,90 <br>
-                        Queijo, champignon, azeitona preta, <br>cebola, oregano e pimentão verde.
-                    </p>  
-                    
-                    <button>ADICIONAR</button>
-                </div>
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio5.jpg" alt="">
-                    <p>
-                        GRANDE R$ 59,90 <br>
-                        Queijo, champignon, azeitona preta, <br>cebola, oregano e pimentão verde.
-                    </p>  
-                    
-                    <button>ADICIONAR</button>
-                </div>
-
-                <div class="option">
-                    <img src="imagens/pizza-cardapio6.jpg" alt="">
-                    <p>
-                        GRANDE R$ 59,90 <br>
-                        Queijo, champignon, azeitona preta, <br>cebola, oregano e pimentão verde.
-                    </p>  
-                    
-                    <button>ADICIONAR</button>
-                </div>
-
                 
 
-            </div>
+                <div class="perfil-user">
+                    <h2>Perfil do usuario</h2>
+
+
+                    <div class="foto-user">
+                    
+                    </div>
+
+                    <div class="nome-user">
+                          <p>Nome do usuario</p>
+                    </div>
+
+                    <div class="info-perfil">
+                        <p>Email</p><br>
+                        <p>Telefone</p><br>
+                        <p>CPF</p>
+                    </div>
+
+     
+                </div>
+                
+                <div class="cadastro-user">
+                    <div class="boas-vindas">
+                        <h3> Olá, seja muito bem-vindo, [NOME DO USUÁRIO]! Aproveite e mantenha seu cadastro atualizado. </h3>
+                    </div>
+                
+                    <p>Mantenha seu endereço atualizado!</p>
+
+                        <form action="" method="post">
+                            <div class="linha-formulario">
+                                <label for="cep">CEP:</label>
+                                <input type="text" id="cep" name="cep">
+                
+                                <label for="uf">UF:</label>
+                                <input type="text" id="uf" name="uf">
+                            </div>
+                
+                            <div class="linha-formulario">
+                                <label for="cidade">CIDADE:</label>
+                                <input type="text" id="cidade" name="cidade">
+                
+                                <label for="bairro">BAIRRO:</label>
+                                <input type="text" id="bairro" name="bairro">
+                            </div>
+                
+                            <div class="linha-formulario">
+                                <label for="rua">RUA:</label>
+                                <input type="text" id="rua" name="rua">
+                            </div>
+                        </form>
+
+                </div>
+                
         </section>
         
     </main>
 
 
-    <footer>
+    <footer id="footer">
         <div class="menu-footer">
             <ul>
                 <li class="title-list">ACESSOS</li>
@@ -147,8 +131,8 @@
 
             <ul>
                 <li class="title-list">CONTATOS</li>
-                <li><a href="#">(31)99588-2234</a></li>
-                <li><a href="#">(31)99588-2234</a></li>
+                <li><a href="index.html">(31)99588-2234</a></li>
+                <li><a href="cardapio.html">(31)99588-2234</a></li>
                 <li><a href="#">(31)99588-2234</a></li>
             </ul>
 
