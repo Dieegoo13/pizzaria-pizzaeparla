@@ -213,9 +213,8 @@ main {
 .boas-vindas {
     width: 1700px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 20px;
     margin-bottom: 40px;
     background-color: var(--clr-background);
     padding: 10px;
@@ -241,55 +240,60 @@ main {
     text-indent: 2rem;
 }
 
-.graficos {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 10rem;
+.formulario form {
+    max-width: 500px;
+    margin: 5rem auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.grafico {
-    flex-wrap: wrap;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+.formulario textarea {
+    max-width: 600px;
+    max-height: 100px;
+    resize: none;
 }
 
-.grafico img {
+.formulario label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario input[type="text"], input[type="number"], textarea {
     width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.grafico .legenda-grafico {
-    width: 50%;
+.formulario input[type="file"] {
+    margin-bottom: 15px;
 }
 
-.infos-detalhadas {
-    width: 300px;
-    background-color: var(--clr-background);
-    text-align: center;
-    color: var(--clr-yellow);
-    border-radius: 5px;
-    font-weight: 600;
-    margin: 10px;
-    padding: 10px;
+.formulario button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.infos-detalhadas .valores {
-    color: var(--clr-background);
-    margin: 1rem;
-    font-size: 1.4rem;
-    font-weight: 800;
-    background-color: var(--clr-yellow);
+.formulario button:hover {
+    background-color: #45a049;
 }
-
 
 
 @media screen and (max-width: 860px){
 
-   html {
-    overflow-y: scroll;
-   }
+    #sidebar {
+        height: 940px;
+    }
+
     .container-principal{
         width: 100%; 
         height: 100%;
@@ -297,21 +301,8 @@ main {
 
     .child {
         width: 340px;
-        height: 1000px;
+        height: 860px;
         flex-direction: row;
-    }
-
-    .info-dashboard {
-        width: 320px;
-        height: 840px;
-    }
-
-    .info-dashboard h2 {
-        font-size: 0.8rem;
-    }
-    
-    .grafico img {
-        width: 50%;
     }
 
     .boas-vindas {
@@ -319,27 +310,35 @@ main {
        font-size: 0.4rem;
     }
 
-
     .boas-vindas img {
         width: 80px;
     }
-    
-    .infos-detalhadas {
-        width: 250px;
+
+    .info-dashboard {
+        width: 320px;
+        height: 700px;
+    }
+
+    .info-dashboard h2 {
+        font-size: 0.8rem;
+        width: 320px;
+    }
+
+    .formulario form {
+        max-width: 300px;
     }
     
-    .infos-detalhadas .valores {
-        font-size: 1rem;
+    .formulario textarea {
+        max-width: 260px;
+        max-height: 100px;
     }
     
+
     #open_btn {
   
         display: none;
         
     }
     
-
-
-
 
 }

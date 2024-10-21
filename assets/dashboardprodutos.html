@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/dashboard.css">
-    <title>PAINEL ADMINISTRATIVO</title>
+    <link rel="stylesheet" href="css/dashboardprodutos.css">
+    <title>Produtos</title>
 </head>
 <body>
     <nav id="sidebar">
@@ -101,41 +101,86 @@
             <div class="child">
                 <div class="boas-vindas">
                     <img src="imagens/PARLA.png" alt=""> 
-                    <h1>OLÁ, SEJA BEM VINDO AO PAINEL ADMINISTRATIVO :)</h1>
+                    <h1>PRODUTOS</h1>
                 </div>
 
                 <div class="info-dashboard">
-                    <h2>Confira seus dados:</h2>
+                      <h2>PRODUTOS CADASTRADOS</h2>
 
-                    <div class="graficos">
-                        <div class="grafico">
-                            <img src="imagens/grafico_tamanho.png" alt="">
-                            
-                            <img class="legenda-grafico" src="imagens/legenda-grafico-tamanho.png" alt="imagens" style="width: 50%; height: auto;">
+                      <div class="titulos">
+                          <h3>Produtos</h3>
+                          <h3>Descrição</h3>
+                          <h3>Preço</h3>
+                          <h3>Imagem</h3>
+                          <h3>Ação</h3>
 
-                        </div>
-    
-                        <div class="grafico">
-                            <img src="imagens/grafico_sabor.png" alt="">
-                            <img class="legenda-grafico" src="imagens/legenda-grafico-sabor.png" alt="imagens" style="width: 110%; height: auto;">
-                        </div>
+                      </div>
 
-                        <div class="infos">
+                      <hr>
 
-                            <div class="infos-detalhadas">
-                                <p>TOTAL DE VENDAS: <span class="valores">872</span></p>
+                      <div class="produtos">
+                        <div class="produto">
+                            <div class="nome">Pizza Catupiry</div>
+                            <div class="descricao">Queijo, champignon, azeitona, preta, cebola, oregano e pimentão verde</div>
+                            <div class="preco">59,90</div>
+                            <div class="imagem"><img src="imagens/pizza-cardapio1.jpg" alt="Pizza Catupiry"></div>
+                            <div class="acao">
+
+                                <a href="dashboardEdiçãoProduto.html"><button class="btn-editar">EDITAR</button>
+                                </a>
+
+                                <button class="btn-excluir">EXCLUIR</button>
                             </div>
-                            <div class="infos-detalhadas">
-                                <p>LUCRO: <span class="valores">R$ 299,90</span></p>
-                            </div>
-
-                            <div class="infos-detalhadas">
-                                <p>TOTAL DE LUCRO: <br><span class="valores">R$ 1435,40</span></p>
-                            </div>
-
                         </div>
+                        <!-- Mais produtos -->
                     </div>
-                </div>
+
+                    <hr>
+                
+
+                    <div class="produtos">
+                        <div class="produto">
+                            <div class="nome">Pizza Catupiry</div>
+                            <div class="descricao">Queijo, champignon, azeitona preta, cebola, oregano e pimentão verde</div>
+                            <div class="preco">59,90</div>
+                            <div class="imagem"><img src="imagens/pizza-cardapio1.jpg" alt="Pizza Catupiry"></div>
+                            <div class="acao">
+                                
+                                <a href="#"><button class="btn-editar">EDITAR</button>
+                                </a>
+
+                                <button class="btn-excluir">EXCLUIR</button>
+                            </div>
+                        </div>
+                        <!-- Mais produtos -->
+                    </div>
+
+                    <hr>
+
+                    <div class="produtos">
+                        <div class="produto">
+                            <div class="nome">Pizza Catupiry</div>
+                            <div class="descricao">Queijo, champignon, azeitona preta, cebola, oregano e pimentão verde</div>
+                            <div class="preco">59,90</div>
+                            <div class="imagem"><img src="imagens/pizza-cardapio1.jpg" alt="Pizza Catupiry"></div>
+                            <div class="acao">
+                                
+                                <a href="#"><button class="btn-editar">EDITAR</button>
+                                </a>
+
+                                <button class="btn-excluir">EXCLUIR</button>
+                            </div>
+                        </div>
+                        <!-- Mais produtos -->
+                    </div>
+
+                    <hr>
+
+                    <a href="dashboardEdiçãoProduto.html"><button class="btn-cadastrar">CADASTRAR PRODUTO</button>
+                    </a>
+                    
+                      
+                </div>  
             </div>
 
         </section>
