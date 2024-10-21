@@ -8,3 +8,9 @@ function menuShow() {
         document.querySelector('.icon').src = "imagens/close_white_36dp (1).svg";
     }
 }
+
+
+
+document.getElementById('open_btn').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('open-sidebar');
+});
