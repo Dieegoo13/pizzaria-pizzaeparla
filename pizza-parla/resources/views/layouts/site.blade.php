@@ -16,6 +16,7 @@
     {{-- CSS Customizado --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     
+    <link rel="icon" href="{{ asset('img/logo.png') }}">
     @stack('styles')
 </head>
 <body>

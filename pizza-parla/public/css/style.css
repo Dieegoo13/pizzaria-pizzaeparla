@@ -38,6 +38,7 @@
     object-fit: cover;
 }
 
+
 .category-select {
     color: #fff;
     border: none;
@@ -56,4 +57,15 @@
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 30px;
+}
+
+.pizza-card {
+    max-width: 170px;
+    margin: auto;
+}
+
+.pizza-img {
+    border-radius: 12px;
+    height: 160px;
+    padding: 8px;
 }

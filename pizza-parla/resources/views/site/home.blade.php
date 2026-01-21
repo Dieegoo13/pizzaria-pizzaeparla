@@ -37,60 +37,149 @@
             </div>
         </div>
 
-        {{-- Título --}}
+        {{-- @php
+            echo '<pre>';
+            var_dump($pizzas);
+            
+        @endphp --}}
+
         <div class="bg-default rounded-3 p-3 mb-4 text-white">
-            <h2 class="fw-bold mb-0">Pizzas Gigantes</h2>
+            <h5 class="fw-bold mb-0">Pizzas Gigantes</h5>
         </div>
 
-        {{-- Cards --}}
         <div class="row g-3">
+            @foreach($pizzas as $pizza)
+                @foreach($pizza->sizes as $size)
+                    @if($size->name === 'Gigante')
+                        <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                            <div class="card hover-card pizza-card text-center">
 
-            {{-- Card Pizza --}}
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 hover-card">
-                    <a href="{{ route('site.index') }}" class="text-decoration-none">
-                        <img 
-                            src="{{ asset('img/logo.png') }}" 
-                            class="card-img-top p-3"
-                            alt="Pizza Gigante"
-                        >
-                        <div class="card-body text-center">
-                            <h6 class="fw-bold text-dark mb-1">Gigante 8 fatias</h6>
-                            <small class="text-muted d-block mb-2">35cm</small>
-                            <span class="badge bg-warning text-dark">
-                                R$ 60,90
-                            </span>
+                                <img 
+                                    src="{{ asset('img/' . $pizza->image) }}" 
+                                    class="card-img-top pizza-img"
+                                    alt="{{ $pizza->name }}"
+                                >
+
+                                <div class="card-body p-2">
+                                    <h6 class="fw-bold text-dark mb-0 small">
+                                        {{ $pizza->name }}
+                                    </h6>
+
+                                    <small class="text-muted d-block">
+                                        {{ $size->name }} • {{ $size->diameter }}cm
+                                    </small>
+
+                                    <span class="badge bg-warning text-dark my-1">
+                                        R$ {{ number_format($size->pivot->price, 2, ',', '.') }}
+                                    </span>
+
+                                    <button 
+                                        class="btn btn-sm btn-success w-100 mt-1"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalPizza"
+                                        data-pizza-id="{{ $pizza->id }}"
+                                        data-size-id="{{ $size->id }}"
+                                    >
+                                        + Adicionar
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card h-100 hover-card">
-                    <a href="{{ route('site.index') }}" class="text-decoration-none">
-                        <img 
-                            src="{{ asset('img/logo.png') }}" 
-                            class="card-img-top p-3"
-                            alt="Pizza Gigante"
-                        >
-                        <div class="card-body text-center">
-                            <h6 class="fw-bold text-dark mb-1">Gigante 8 fatias</h6>
-                            <small class="text-muted d-block mb-2">35cm</small>
-                            <span class="badge bg-warning text-dark">
-                                R$ 60,90
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
+                    @endif
+                @endforeach
+            @endforeach
         </div>
 
-        {{-- Próxima categoria --}}
+
         <div class="bg-default rounded-3 p-3 my-5 text-white">
-            <h2 class="fw-bold mb-0">Pizzas Médias</h2>
+            <h5 class="fw-bold mb-0">Pizzas Médias</h5>
         </div>
+
+        <div class="row g-3">
+            @foreach($pizzas as $pizza)
+                @foreach($pizza->sizes as $size)
+                    @if($size->name === 'Média')
+                        <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                            <div class="card hover-card pizza-card text-center">
+
+                                <img src="{{ asset('img/' . $pizza->image) }}" class="card-img-top pizza-img">
+
+                                <div class="card-body p-2">
+                                    <h6 class="fw-bold text-dark mb-0 small">{{ $pizza->name }}</h6>
+
+                                    <small class="text-muted d-block">
+                                        {{ $size->name }} • {{ $size->diameter }}cm
+                                    </small>
+
+                                    <span class="badge bg-warning text-dark my-1">
+                                        R$ {{ number_format($size->pivot->price, 2, ',', '.') }}
+                                    </span>
+
+                                    <button 
+                                        class="btn btn-sm btn-success w-100 mt-1"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalPizza"
+                                        data-pizza-id="{{ $pizza->id }}"
+                                        data-size-id="{{ $size->id }}"
+                                    >
+                                        + Adicionar
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endforeach
+        </div>
+
+        <div class="bg-default rounded-3 p-3 my-5 text-white">
+            <h5 class="fw-bold mb-0">Pizzas Pequenas</h5>
+        </div>
+
+        <div class="row g-3">
+            @foreach($pizzas as $pizza)
+                @foreach($pizza->sizes as $size)
+                    @if($size->name === 'Pequena')
+                        <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                            <div class="card hover-card pizza-card text-center">
+
+                                <img src="{{ asset('img/' . $pizza->image) }}" class="card-img-top pizza-img">
+
+                                <div class="card-body p-2">
+                                    <h6 class="fw-bold text-dark mb-0 small">{{ $pizza->name }}</h6>
+
+                                    <small class="text-muted d-block">
+                                        {{ $size->name }} • {{ $size->diameter }}cm
+                                    </small>
+
+                                    <span class="badge bg-warning text-dark my-1">
+                                        R$ {{ number_format($size->pivot->price, 2, ',', '.') }}
+                                    </span>
+
+                                    <button 
+                                        class="btn btn-sm btn-success w-100 mt-1"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalPizza"
+                                        data-pizza-id="{{ $pizza->id }}"
+                                        data-size-id="{{ $size->id }}"
+                                    >
+                                        + Adicionar
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endforeach
+        </div>
+
+        <div class="bg-default rounded-3 p-3 my-5 text-white">
+            <h5 class="fw-bold mb-0">Bebidas</h5>
+        </div>
+        
 
     </section>
 </main>

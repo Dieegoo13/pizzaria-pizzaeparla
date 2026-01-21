@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pizza;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -13,7 +14,10 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('site.home');
+
+        $pizzas = Pizza::with('sizes')->where('active', true)->get();
+
+        return view('site.home', compact('pizzas'));
     }
 
     /**
