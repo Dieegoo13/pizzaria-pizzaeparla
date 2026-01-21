@@ -23,6 +23,22 @@
     {{-- Header/Navbar Component --}}
     @include('layouts.navbar')
 
+    @if(session('success'))
+        <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show m-3">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+    
     {{-- Main Content --}}
     <main>
         @yield('content')
@@ -38,5 +54,6 @@
     <script src="/js/scripts.js"></script>
     
     @stack('scripts')
+    <x-auth-modal />
 </body>
 </html>

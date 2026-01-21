@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beverage;
+use App\Models\Category;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
 
@@ -12,12 +14,25 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
 
-        $pizzas = Pizza::with('sizes')->where('active', true)->get();
+        $categories = Category::all();
 
-        return view('site.home', compact('pizzas'));
+        $pizzas = Pizza::with('sizes')
+            ->when($request->category, function ($query) use ($request) {
+                $query->whereHas('category', function ($q) use ($request) {
+                    $q->where('slug', $request->category);
+                });
+            })
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            })
+            ->get();
+
+        $beverages = Beverage::all();    
+
+        return view('site.home', compact('pizzas', 'categories', 'beverages'));
     }
 
     /**

@@ -20,8 +20,13 @@
                 {{-- Usuário --}}
                 @auth
                     <div class="dropdown">
-                        <a class="text-white dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        <a class="text-white dropdown-toggle d-flex align-items-center gap-2 text-decoration-none"
+                        href="#"
+                        data-bs-toggle="dropdown">
+                            
                             <i class="bi bi-person-circle fs-4"></i>
+                            <span>Olá, {{ Auth::user()->name }}</span>
+
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
@@ -36,7 +41,7 @@
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form method="POST">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button class="dropdown-item text-danger">
                                         <i class="bi bi-box-arrow-right me-2"></i>Sair
@@ -46,8 +51,14 @@
                         </ul>
                     </div>
                 @else
-                    <a href="#" class="text-white">
+                    <a 
+                        href="#" 
+                        class="text-white d-flex align-items-center gap-2 text-decoration-none"
+                        data-bs-toggle="modal"
+                        data-bs-target="#authModal"
+                    >
                         <i class="bi bi-person-circle fs-4"></i>
+                        <span class="fst-italic">Entrar ou Cadastrar-se</span>
                     </a>
                 @endauth
 
@@ -86,12 +97,50 @@
 
             <ul class="nav flex-column gap-3 fs-5">
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">
-                        <i class="bi bi-person me-2 text-dark"></i>
-                        Entrar / Cadastrar-se
-                    </a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <span class="nav-link text-dark fw-normal">
+                            <i class="bi bi-person-circle me-2"></i>
+                            Olá, {{ Auth::user()->name }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-dark">
+                            <i class="bi bi-person me-2"></i>
+                            Meu Perfil
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-dark">
+                            <i class="bi bi-receipt me-2"></i>
+                            Meus Pedidos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="nav-link text-danger border-0 bg-transparent text-start w-100">
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Sair
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a 
+                            href="#"
+                            class="nav-link text-dark"
+                            data-bs-toggle="modal"
+                            data-bs-target="#authModal"
+                        >
+                            <i class="bi bi-person me-2"></i>
+                            Entrar / Cadastrar-se
+                        </a>
+                    </li>
+                @endauth
 
                 <li class="nav-item">
                     <a href="#cardapio" class="nav-link text-dark">

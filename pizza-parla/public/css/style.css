@@ -39,26 +39,35 @@
 }
 
 
-.category-select {
-    color: #fff;
-    border: none;
-    outline: none;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-
-
+.custom-select {
+    background-color: #fff;
+    color: #9F0000;
+    border: 1px solid #ddd;
+    font-weight: 500;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+    /* seta custom */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23c1121f' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 30px;
+    background-position: right 1rem center;
+    background-size: 14px;
+
+    padding-right: 2.5rem;
 }
 
+/* opções do select */
+.custom-select option {
+    background-color: #fff;
+    color: #c1121f;
+}
+
+/* foco */
+.custom-select:focus {
+    border-color: #c1121f;
+    box-shadow: 0 0 0 0.2rem rgba(193, 18, 31, 0.25);
+}
 .pizza-card {
     max-width: 170px;
     margin: auto;
