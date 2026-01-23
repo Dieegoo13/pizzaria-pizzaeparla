@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Instalar dependências do sistema
+# Dependências do sistema
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -9,25 +9,27 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libzip-dev \
     zip \
-    curl
+    curl \
+    default-mysql-client
 
-# Extensões PHP necessárias pro Laravel
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath zip
+# Extensões PHP (MySQL EXPLÍCITO)
+RUN docker-php-ext-install pdo pdo_mysql mbstring bcmath zip
 
-# Instalar Composer
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Diretório da aplicação
 WORKDIR /app
 
-# Copiar arquivos
 COPY . .
 
-# Instalar dependências PHP
 RUN composer install --no-dev --optimize-autoloader
 
-# Permissões
+RUN php artisan key:generate || true
+RUN php artisan config:clear
+RUN php artisan cache:clear
+
 RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 9000
+
 CMD ["php-fpm"]
