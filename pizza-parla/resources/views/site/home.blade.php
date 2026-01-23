@@ -90,9 +90,12 @@
                                         data-bs-target="#modalPizza"
                                         data-pizza-id="{{ $pizza->id }}"
                                         data-size-id="{{ $size->id }}"
+                                        data-pizza-name="{{ $pizza->name }}"
+                                        data-price="{{ (float) $size->pivot->price }}"
                                     >
                                         + Adicionar
                                     </button>
+
                                 </div>
 
                             </div>
@@ -133,9 +136,12 @@
                                         data-bs-target="#modalPizza"
                                         data-pizza-id="{{ $pizza->id }}"
                                         data-size-id="{{ $size->id }}"
+                                        data-pizza-name="{{ $pizza->name }}"
+                                        data-price="{{ (float) $size->pivot->price }}"
                                     >
                                         + Adicionar
                                     </button>
+
                                 </div>
 
                             </div>
@@ -175,6 +181,8 @@
                                         data-bs-target="#modalPizza"
                                         data-pizza-id="{{ $pizza->id }}"
                                         data-size-id="{{ $size->id }}"
+                                        data-pizza-name="{{ $pizza->name }}"
+                                        data-price="{{ (float) $size->pivot->price }}"
                                     >
                                         + Adicionar
                                     </button>
@@ -226,7 +234,133 @@
             @endforeach
         </div>
 
-
     </section>
+
+    <div class="modal fade" id="modalPizza" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <form method="POST" action="{{ route('site.index') }}">
+                    @csrf
+
+                    <input type="hidden" name="pizza_id" id="modalPizzaId">
+                    <input type="hidden" name="size_id" id="modalSizeId">
+
+                    <div class="modal-header bg-default d-flex align-items-center gap-4">
+                        <img src="img/logo.png" alt="" width="70">
+                        <h3 class="text-white" >Pizza&Parla</h3>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+
+                            {{-- ESQUERDA: OPÇÕES --}}
+                            <div class="col-md-7">
+
+                                <h6 class="fw-bold">Sabores</h6>
+                                <div class="row">
+                                    @foreach($pizzas as $pizza)
+                                        <div class="col-6">
+                                            <div class="form-check">
+                                                <input 
+                                                    class="form-check-input flavor-checkbox"
+                                                    type="checkbox"
+                                                    value="{{ $pizza->id }}"
+                                                    data-name="{{ $pizza->name }}"
+                                                >
+                                                <label class="form-check-label">
+                                                    {{ $pizza->name }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <hr>
+
+                                <h6 class="fw-bold">Borda <span class="text-danger">*</span></h6>
+
+                                @foreach([
+                                    ['name' => 'Sem borda', 'price' => 0],
+                                    ['name' => 'Cheddar', 'price' => 5],
+                                    ['name' => 'Catupiry', 'price' => 5],
+                                ] as $border)
+                                    <div class="form-check">
+                                        <input 
+                                            class="form-check-input border-radio"
+                                            type="radio"
+                                            name="border"
+                                            data-name="{{ $border['name'] }}"
+                                            data-price="{{ $border['price'] }}"
+                                            required
+                                        >
+                                        <label class="form-check-label">
+                                            {{ $border['name'] }} 
+                                            @if($border['price'] > 0)
+                                                (+ R$ {{ number_format($border['price'], 2, ',', '.') }})
+                                            @endif
+                                        </label>
+                                    </div>
+                                @endforeach
+
+                                <hr>
+
+                                <h6 class="fw-bold">Bebida</h6>
+                                <select class="form-select beverage-select">
+                                    <option value="" data-price="0">Nenhuma</option>
+                                    @foreach($beverages as $beverage)
+                                        <option 
+                                            value="{{ $beverage->id }}"
+                                            data-name="{{ $beverage->name }}"
+                                            data-price="{{ $beverage->price }}"
+                                        >
+                                            {{ $beverage->name }} (+ R$ {{ number_format($beverage->price, 2, ',', '.') }})
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <hr>
+
+                                <h6 class="fw-bold">Observações</h6>
+                                <textarea class="form-control" rows="3"></textarea>
+
+                            </div>
+
+                            {{-- DIREITA: RESUMO --}}
+                            <div class="col-md-5">
+                                <div class="border rounded p-3 bg-light">
+                                    <h6 class="fw-bold">Resumo do pedido</h6>
+
+                                    <p class="mb-1"><strong>Pizza:</strong> <span id="summaryPizza"></span></p>
+                                    <p class="mb-1"><strong>Borda:</strong> <span id="summaryBorder">—</span></p>
+                                    <p class="mb-1"><strong>Bebida:</strong> <span id="summaryBeverage">—</span></p>
+
+                                    <hr>
+
+                                    <h5 class="fw-bold text-success">
+                                        Total: R$ <span id="summaryTotal">0,00</span>
+                                    </h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button 
+                            type="button"
+                            class="btn btn-success w-100"
+                            id="addToCartBtn"
+                        >
+                            Adicionar ao carrinho 🛒
+                        </button>
+
+                    </div>
+                    
+
+                </form>
+            </div>
+        </div>
+    </div>
+
 </main>
 @endsection

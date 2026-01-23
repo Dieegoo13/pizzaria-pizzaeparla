@@ -35,6 +35,16 @@ class SiteController extends Controller
         return view('site.home', compact('pizzas', 'categories', 'beverages'));
     }
 
+    public function checkout()
+    {
+        return view('site.checkout');
+    }   
+
+    public function perfil()
+    {
+        return view('site.perfil');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
