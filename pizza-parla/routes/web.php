@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +23,19 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/checkout', [SiteController::class, 'checkout'])->name('site.checkout');
+// Route::get('/checkout', [SiteController::class, 'checkout'])->name('site.checkout');
 
-Route::get('/perfil', [SiteController::class, 'perfil'])->name('site.perfil');
 
-// Route::put('/perfil/atualizar', [PerfilController::class, 'atualizar'])->name('perfil.atualizar');
-// Route::put('/perfil/atualizar-senha', [PerfilController::class, 'atualizarSenha'])->name('perfil.atualizar-senha');
-// Route::delete('/perfil/deletar', [PerfilController::class, 'deletar'])->name('perfil.deletar');
+Route::middleware('auth')->group(function () {
 
-// Route::post('/enderecos', [EnderecoController::class, 'store'])->name('enderecos.store');
-// Route::delete('/enderecos/{id}', [EnderecoController::class, 'destroy'])->name('enderecos.destroy');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/cart/items', [CartController::class, 'items'])->name('cart.items');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
-// Route::post('/cartoes', [CartaoController::class, 'store'])->name('cartoes.store');
-// Route::delete('/cartoes/{id}', [CartaoController::class, 'destroy'])->name('cartoes.destroy');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::get('/perfil', [SiteController::class, 'perfil'])->name('site.perfil');
+
+    Route::post('/address', [AddressController::class, 'store'])->name('adress.store');
+});

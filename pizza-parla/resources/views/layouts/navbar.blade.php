@@ -30,12 +30,12 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('site.perfil') }}">
                                     <i class="bi bi-person me-2"></i>Meu Perfil
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('site.perfil') }}">
                                     <i class="bi bi-receipt me-2"></i>Meus Pedidos
                                 </a>
                             </li>
@@ -63,37 +63,13 @@
                 @endauth
 
                 {{-- Carrinho --}}
-                <div class="dropdown">
-                    <a 
-                        href="#" 
-                        id="cartButton"
-                        class="text-white position-relative"
-                        data-bs-toggle="dropdown"
-                    >
-                        <i class="bi bi-cart3 fs-4"></i>
+                <button class="btn position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <i class="bi bi-cart fs-4 text-white"></i>
+                    <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge bg-danger">
+                        {{ count(session('cart', [])) }}
+                    </span>
+                </button>
 
-                        <span 
-                            id="cartBadge"
-                            class="position-absolute top-0 start-100 translate-middle badge bg-warning d-none"
-                        >
-                            0
-                        </span>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end p-3" style="width: 280px;">
-                        <h6 class="fw-bold mb-2">Seu carrinho</h6>
-
-                        <div id="cartDropdownItems">
-                            <p class="text-muted small mb-0">Carrinho vazio</p>
-                        </div>
-
-                        <hr>
-
-                        <a href="/checkout" class="btn btn-success w-100">
-                            Ir para pagamento
-                        </a>
-                    </div>
-                </div>
 
 
                 {{-- Botão Hambúrguer --}}
@@ -137,7 +113,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-dark">
+                        <a href="{{ route('site.perfil') }}" class="nav-link text-dark">
                             <i class="bi bi-receipt me-2"></i>
                             Meus Pedidos
                         </a>
@@ -167,7 +143,7 @@
                 @endauth
 
                 <li class="nav-item">
-                    <a href="/" class="nav-link text-dark">
+                    <a href="{{ route('site.index') }}" class="nav-link text-dark">
                         <i class="bi bi-journal-text me-2 text-dark"></i>
                         Cardápio
                     </a>
@@ -207,6 +183,51 @@
 
             </ul>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="cartModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+            <div class="modal-header bg-default text-white d-flex justify-content-between align-items-center">
+                <h5 class="fw-bold">Seu carrinho</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                @if(session('cart') && count(session('cart')) > 0)
+                    @foreach(session('cart') as $id => $item)
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <strong>{{ $item['name'] }}</strong><br>
+                                <small>{{ $item['border'] }} | {{ $item['beverage'] }}</small>
+                            </div>
+                            <div>
+                                R$ {{ number_format($item['price'], 2, ',', '.') }}
+                                <button 
+                                    class="btn btn-sm btn-danger ms-2"
+                                    onclick="removeItem('{{ $id }}')"
+                                >✕</button>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p class="text-muted text-center">Carrinho vazio</p>
+                @endif
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <button class="btn btn-outline-danger" onclick="clearCart()">
+                    Limpar carrinho
+                </button>
+
+                <a href="{{ route('cart.checkout') }}" class="btn btn-success">
+                    Ir para pagamento
+                </a>
+            </div>
+
+            </div>
         </div>
     </div>
 

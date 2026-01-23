@@ -179,9 +179,9 @@
             </div>
 
             <!-- COLUNA DIREITA - Resumo do Pedido -->
-            <div class="col-lg-5">
+            <div class="col-lg-5 border border-2">
                 <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
-                    <div class="card-header bg-danger text-white py-3">
+                    <div class="card-header bg-default text-white py-3">
                         <h5 class="mb-0 fw-bold text-center">RESUMO DO PEDIDO</h5>
                     </div>
                     <div class="card-body p-4">
@@ -194,8 +194,9 @@
 
                         <!-- Lista de Produtos -->
                         <div id="orderItems">
-                            @if(session('cart') && count(session('cart')) > 0)
-                                @foreach(session('cart') as $id => $item)
+                           @if($cart && count($cart) > 0)
+
+                                @foreach($cart as $id => $item)
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span>{{ $item['name'] }} <small class="text-muted">(x{{ $item['quantity'] }})</small></span>
                                         <span class="fw-bold">R$ {{ number_format($item['price'] * $item['quantity'], 2, ',', '.') }}</span>
@@ -211,7 +212,7 @@
 
                         <!-- Total -->
                         <div class="mt-4 pt-3 border-top">
-                            <div class="d-flex justify-content-between align-items-center bg-danger text-white p-3 rounded">
+                            <div class="d-flex justify-content-between align-items-center bg-default text-white p-3 rounded">
                                 <strong class="fs-5">Total a pagar:</strong>
                                 <strong class="fs-4">R$ {{ number_format($total ?? 30.00, 2, ',', '.') }}</strong>
                             </div>
@@ -237,148 +238,3 @@
 </main>
 @endsection
 
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Elementos
-    const paymentOptions = document.querySelectorAll('.payment-option');
-    const paymentMethodInput = document.getElementById('paymentMethod');
-    const creditCardFields = document.getElementById('creditCardFields');
-    const pixMessage = document.getElementById('pixMessage');
-    const cashFields = document.getElementById('cashFields');
-    
-    // Campos de cartão
-    const cardNumber = document.getElementById('cardNumber');
-    const cardValidity = document.getElementById('cardValidity');
-    const cardCvv = document.getElementById('cardCvv');
-    const cardName = document.getElementById('cardName');
-    const cardCpf = document.getElementById('cardCpf');
-
-    // Alternar forma de pagamento
-    paymentOptions.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active de todos
-            paymentOptions.forEach(b => b.classList.remove('active'));
-            
-            // Adiciona active no clicado
-            this.classList.add('active');
-            
-            // Pega o método de pagamento
-            const method = this.dataset.payment;
-            paymentMethodInput.value = method;
-            
-            // Esconde todos os campos
-            creditCardFields.classList.add('d-none');
-            pixMessage.classList.add('d-none');
-            cashFields.classList.add('d-none');
-            
-            // Remove required dos campos de cartão
-            cardNumber.removeAttribute('required');
-            cardValidity.removeAttribute('required');
-            cardCvv.removeAttribute('required');
-            cardName.removeAttribute('required');
-            cardCpf.removeAttribute('required');
-            
-            // Mostra campos específicos
-            if (method === 'credit_card') {
-                creditCardFields.classList.remove('d-none');
-                cardNumber.setAttribute('required', 'required');
-                cardValidity.setAttribute('required', 'required');
-                cardCvv.setAttribute('required', 'required');
-                cardName.setAttribute('required', 'required');
-                cardCpf.setAttribute('required', 'required');
-            } else if (method === 'pix') {
-                pixMessage.classList.remove('d-none');
-            } else if (method === 'cash') {
-                cashFields.classList.remove('d-none');
-            }
-        });
-    });
-
-    // Máscara de CEP
-    const cepInput = document.querySelector('input[name="cep"]');
-    if (cepInput) {
-        cepInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 5) {
-                value = value.slice(0, 5) + '-' + value.slice(5, 8);
-            }
-            e.target.value = value;
-        });
-    }
-
-    // Máscara de Cartão
-    if (cardNumber) {
-        cardNumber.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-            e.target.value = value;
-        });
-    }
-
-    // Máscara de Validade
-    if (cardValidity) {
-        cardValidity.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            e.target.value = value;
-        });
-    }
-
-    // Máscara de CPF
-    if (cardCpf) {
-        cardCpf.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-            e.target.value = value;
-        });
-    }
-
-    // Apenas números no CVV
-    if (cardCvv) {
-        cardCvv.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '');
-        });
-    }
-
-});
-</script>
-@endpush
-
-@push('styles')
-<style>
-.payment-option {
-    transition: all 0.3s ease;
-}
-
-.payment-option:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.payment-option.active {
-    background-color: #dc3545;
-    color: white;
-    border-color: #dc3545;
-}
-
-.payment-option.active:hover {
-    background-color: #bb2d3b;
-    border-color: #bb2d3b;
-}
-
-.sticky-top {
-    position: sticky;
-}
-
-@media (max-width: 991px) {
-    .sticky-top {
-        position: relative;
-        top: 0 !important;
-    }
-}
-</style>
-@endpush

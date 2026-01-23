@@ -12,10 +12,20 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+
+    
     protected function redirectTo($request)
     {
+
+        session()->flash(
+            'error',
+            'Você precisa estar logado para acessar essa página, Por favor, faça login.'
+        );
+
+
         if (! $request->expectsJson()) {
-            return route('login');
+            return route('site.index');
         }
+        
     }
 }

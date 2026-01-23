@@ -78,3 +78,38 @@
     height: 160px;
     padding: 8px;
 }
+
+/* TELA DE CARRINHO */
+
+.payment-option {
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-option.active {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.payment-option.active:hover {
+    background-color: #bb2d3b;
+    border-color: #bb2d3b;
+}
+
+.sticky-top {
+    position: sticky;
+}
+
+@media (max-width: 991px) {
+    .sticky-top {
+        position: relative;
+        top: 0 !important;
+    }
+}
+
+/* TELA DE PERFIL */

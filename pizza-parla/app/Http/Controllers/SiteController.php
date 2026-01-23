@@ -35,14 +35,11 @@ class SiteController extends Controller
         return view('site.home', compact('pizzas', 'categories', 'beverages'));
     }
 
-    public function checkout()
-    {
-        return view('site.checkout');
-    }   
-
     public function perfil()
     {
-        return view('site.perfil');
+        $enderecos = auth()->user()->addresses;
+
+        return view('site.perfil', compact('enderecos'));
     }
 
     /**

@@ -8,7 +8,7 @@
     <div class="container">
 
         <!-- Header CONTA -->
-        <div class="bg-danger text-white p-4 mb-4 rounded">
+        <div class="bg-default text-white p-4 mb-4 rounded">
             <h1 class="mb-0 fw-bold">CONTA</h1>
         </div>
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <button type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#editProfileModal">
-                            SALVAR
+                            EDITAR
                         </button>
 
                     </form>
@@ -98,11 +98,19 @@
                                 <div>
                                     <p class="mb-1">
                                         <i class="bi bi-geo-alt-fill text-danger me-2"></i>
-                                        <strong>Rua:</strong> {{ $endereco->rua }}, {{ $endereco->numero ?? 's/n' }}
+                                        <strong>Endereço:</strong>
+                                        {{ $endereco->street }},
+                                        {{ $endereco->number ?? 's/n' }}
                                     </p>
-                                    <p class="mb-0 text-muted small">{{ $endereco->bairro }} - {{ $endereco->cep }}</p>
+
+                                    <p class="mb-0 text-muted small">
+                                        {{ $endereco->neighborhood }} - {{ $endereco->city }} <br>
+                                        CEP: {{ $endereco->zip_code }}
+                                    </p>
                                 </div>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteAddress({{ $endereco->id }})">
+
+                                <button class="btn btn-sm btn-outline-danger"
+                                        onclick="deleteAddress({{ $endereco->id }})">
                                     <i class="bi bi-x-lg"></i>
                                 </button>
                             </div>
@@ -113,6 +121,7 @@
                             Nenhum endereço cadastrado
                         </div>
                     @endif
+
 
                     <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addAddressModal">
                         <i class="bi bi-plus-circle me-2"></i>Adicionar Endereço
@@ -225,7 +234,7 @@
 <div class="modal fade" id="editProfileModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
+            <div class="modal-header bg-default text-white">
                 <h5 class="modal-title">Editar Perfil</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -267,32 +276,32 @@
 <div class="modal fade" id="addAddressModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
+            <div class="modal-header bg-default text-white">
                 <h5 class="modal-title">Adicionar Endereço</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <form action="{{ route('site.index') }}" method="POST">
+            <form action="{{ route('adress.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">CEP</label>
-                        <input type="text" name="cep" class="form-control" maxlength="9" required>
+                        <input type="text" name="zip_code" class="form-control" maxlength="9" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Rua</label>
-                        <input type="text" name="rua" class="form-control" required>
+                        <input type="text" name="street" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Número</label>
-                        <input type="text" name="numero" class="form-control">
+                        <input type="text" name="number" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Bairro</label>
-                        <input type="text" name="bairro" class="form-control" required>
+                        <input type="text" name="neighborhood" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Complemento</label>
-                        <input type="text" name="complemento" class="form-control">
+                        <label class="form-label">Cidade</label>
+                        <input type="text" name="city" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -308,7 +317,7 @@
 <div class="modal fade" id="addCardModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
+            <div class="modal-header bg-default text-white">
                 <h5 class="modal-title">Adicionar Cartão</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -368,104 +377,3 @@
 </div>
 
 @endsection
-
-@push('scripts')
-<script>
-function deleteAddress(id) {
-    if (confirm('Deseja realmente remover este endereço?')) {
-        fetch(`/enderecos/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                'Accept': 'application/json',
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            }
-        });
-    }
-}
-
-function deleteCard(id) {
-    if (confirm('Deseja realmente remover este cartão?')) {
-        fetch(`/cartoes/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                'Accept': 'application/json',
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            }
-        });
-    }
-}
-
-// Máscaras
-document.addEventListener('DOMContentLoaded', function() {
-    // Máscara de CEP
-    const cepInputs = document.querySelectorAll('input[name="cep"]');
-    cepInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 5) {
-                value = value.slice(0, 5) + '-' + value.slice(5, 8);
-            }
-            e.target.value = value;
-        });
-    });
-
-    // Máscara de CPF
-    const cpfInputs = document.querySelectorAll('input[name="cpf"]');
-    cpfInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-            e.target.value = value;
-        });
-    });
-
-    // Máscara de Telefone
-    const phoneInputs = document.querySelectorAll('input[name="phone"]');
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 10) {
-                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-            } else {
-                value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-            }
-            e.target.value = value;
-        });
-    });
-
-    // Máscara de Cartão
-    const cardInputs = document.querySelectorAll('input[name="numero"]');
-    cardInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-            e.target.value = value.trim();
-        });
-    });
-
-    // Máscara de Validade
-    const validityInputs = document.querySelectorAll('input[name="validade"]');
-    validityInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            e.target.value = value;
-        });
-    });
-});
-</script>
-@endpush
